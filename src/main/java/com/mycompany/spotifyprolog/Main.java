@@ -12,7 +12,7 @@ package com.mycompany.spotifyprolog;
 public class Main {
 
     public static void main(String[] args) {
-        PantallaPrincipal.Ejecutar();
+        Bienvenida.Ejecutar();
     }
 }
 
