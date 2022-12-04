@@ -5,14 +5,16 @@
 
 package com.mycompany.spotifyprolog;
 
+import java.io.IOException;
+
 /**
  *
  * @author citla
  */
 public class Main {
 
-    public static void main(String[] args) {
-        Bienvenida.Ejecutar();
+    public static void main(String[] args) throws IOException {
+      Bienvenida.Ejecutar();
     }
 }
 
