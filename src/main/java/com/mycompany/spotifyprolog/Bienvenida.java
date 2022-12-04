@@ -5,13 +5,24 @@
 package com.mycompany.spotifyprolog;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Bienvenida extends JFrame implements ActionListener {
 
-    Bienvenida(){
+    private JLabel  materia;
 
+    Bienvenida(){
+        Font fuente = new Font("Arial", 1, 16);
+        setLayout(null);
+        this.getContentPane().setBackground(new Color(33, 33, 33));
+        setTitle("Spotify");
+        materia = new JLabel("Programacion Logica y Funcional");
+        materia.setForeground(Color.WHITE);
+        materia.setBounds(800,5,300,30);
+        materia.setFont(fuente);
+        add(materia);
     }
 
 
