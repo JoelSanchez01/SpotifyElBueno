@@ -141,8 +141,7 @@ pertenece_artista(gods_menu,stray_kids).
 
 obtener_cancion_genero(X,A,Y,Z):-pertenece_genero(X,A),pertenece_artista(X,Y),pertenece_album(X,Z).
 obtener_cancion_idioma(X,A,Y,Z):-idioma_cancion(X,A),pertenece_artista(X,Y),pertenece_album(X,Z).
-
-
+obtenertodo(X,A,Y,Z,B):-idioma_cancion(X,A),pertenece_artista(X,Y),pertenece_album(X,Z),pertenece_genero(X,B).
 
 
 
