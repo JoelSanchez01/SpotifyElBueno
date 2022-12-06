@@ -12,7 +12,7 @@ import java.util.Objects;
 
 public class PantallaPrincipal  extends JFrame implements ActionListener {
     
-    private ImageIcon espanol, ingles, coreano, pop, rock, alternativo, punk, hiphop, rap;
+    private ImageIcon espanol, ingles, coreano, pop, rock, alternativo, punk, hiphop, rap, espanolH, inglesH, coreanoH, popH, rockH, alternativoH, punkH, hiphopH, rapH;
     private JLabel title;
     private JButton bespanol,bingles,bcoreano, bpop, brock, balternativo, bpunk, bhiphop, brap;
     
@@ -27,6 +27,16 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         punk = new ImageIcon("Punk.png");
         hiphop = new ImageIcon("Hiphop.png");
         rap = new ImageIcon("Rap.png");
+        
+        espanolH = new ImageIcon("EspanolH.png");
+        inglesH = new ImageIcon("InglesH.png");
+        coreanoH = new ImageIcon("CoreanoH.png");
+        popH = new ImageIcon("PopH.png");
+        alternativoH = new ImageIcon("AlternativoH.png");
+        rockH = new ImageIcon("RockH.png");
+        punkH = new ImageIcon("PunkH.png");
+        hiphopH = new ImageIcon("HiphopH.png");
+        rapH = new ImageIcon("RapH.png");
         
         Font fuenteTextmini = new Font("Outfit", 0, 16);
         Font fuenteTitle = new Font("Outfit", 0, 38);
@@ -54,6 +64,17 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         bespanol.addActionListener(this);
         add(bespanol);
         
+        bespanol.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bespanol.setIcon(new ImageIcon(espanolH.getImage().getScaledInstance(210,45,Image.SCALE_SMOOTH)));
+                bespanol.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bespanol.setIcon(new ImageIcon(espanol.getImage().getScaledInstance(210,45,Image.SCALE_SMOOTH)));
+
+            }        });
+        
         bingles = new JButton();
         bingles.setIcon(ingles);
         bingles.setBackground(null);
@@ -63,6 +84,17 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         bingles.setBounds(435, 455, 210, 45);
         bingles.addActionListener(this);
         add(bingles);
+        
+        bingles.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bingles.setIcon(new ImageIcon(inglesH.getImage().getScaledInstance(210,45,Image.SCALE_SMOOTH)));
+                bingles.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bingles.setIcon(new ImageIcon(ingles.getImage().getScaledInstance(210,45,Image.SCALE_SMOOTH)));
+
+            }        });
         
         bcoreano = new JButton();
         bcoreano.setIcon(coreano);
@@ -74,6 +106,19 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         bcoreano.addActionListener(this);
         add(bcoreano);
         
+        bcoreano.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bcoreano.setIcon(new ImageIcon(coreanoH.getImage().getScaledInstance(210,45,Image.SCALE_SMOOTH)));
+                bcoreano.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bcoreano.setIcon(new ImageIcon(coreano.getImage().getScaledInstance(210,45,Image.SCALE_SMOOTH)));
+
+            }        });
+        
+        //BOTONES DE GENEROS
+        
         bpop = new JButton();
         bpop.setIcon(pop);
         bpop.setBackground(null);
@@ -83,6 +128,17 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         bpop.setBounds(265, 520, 120, 60);
         bpop.addActionListener(this);
         add(bpop);
+        
+        bpop.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bpop.setIcon(new ImageIcon(popH.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
+                bpop.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bpop.setIcon(new ImageIcon(pop.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
+
+            }        });
         
         bhiphop = new JButton();
         bhiphop.setIcon(hiphop);
@@ -94,6 +150,17 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         bhiphop.addActionListener(this);
         add(bhiphop);
         
+        bhiphop.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bhiphop.setIcon(new ImageIcon(hiphopH.getImage().getScaledInstance(170,60,Image.SCALE_SMOOTH)));
+                bhiphop.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bhiphop.setIcon(new ImageIcon(hiphop.getImage().getScaledInstance(170,60,Image.SCALE_SMOOTH)));
+
+            }        });
+        
         brock = new JButton();
         brock.setIcon(rock);
         brock.setBackground(null);
@@ -103,6 +170,17 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         brock.setBounds(695, 520, 120, 60);
         brock.addActionListener(this);
         add(brock);
+        
+        brock.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                brock.setIcon(new ImageIcon(rockH.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
+                brock.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                brock.setIcon(new ImageIcon(rock.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
+
+            }        });
         
         bpunk = new JButton();
         bpunk.setIcon(punk);
@@ -114,6 +192,17 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         bpunk.addActionListener(this);
         add(bpunk);
         
+        bpunk.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                bpunk.setIcon(new ImageIcon(punkH.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
+                bpunk.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                bpunk.setIcon(new ImageIcon(punk.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
+
+            }        });
+        
         balternativo = new JButton();
         balternativo.setIcon(alternativo);
         balternativo.setBackground(null);
@@ -124,6 +213,17 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         balternativo.addActionListener(this);
         add(balternativo);
         
+        balternativo.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                balternativo.setIcon(new ImageIcon(alternativoH.getImage().getScaledInstance(200,60,Image.SCALE_SMOOTH)));
+                balternativo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                balternativo.setIcon(new ImageIcon(alternativo.getImage().getScaledInstance(200,60,Image.SCALE_SMOOTH)));
+
+            }        });
+        
         brap = new JButton();
         brap.setIcon(rap);
         brap.setBackground(null);
@@ -133,6 +233,17 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         brap.setBounds(746, 600, 120, 60);
         brap.addActionListener(this);
         add(brap);
+        
+        brap.addMouseListener(new java.awt.event.MouseAdapter(){
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                brap.setIcon(new ImageIcon(rapH.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
+                brap.setCursor(new Cursor(Cursor.HAND_CURSOR));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                brap.setIcon(new ImageIcon(rap.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
+
+            }        });
         
     }
 
