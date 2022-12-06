@@ -13,8 +13,11 @@ import java.util.Objects;
 public class PantallaPrincipal  extends JFrame implements ActionListener {
     
     private ImageIcon espanol, ingles, coreano, pop, rock, alternativo, punk, hiphop, rap, espanolH, inglesH, coreanoH, popH, rockH, alternativoH, punkH, hiphopH, rapH;
-    private JLabel title;
-    private JButton bespanol,bingles,bcoreano, bpop, brock, balternativo, bpunk, bhiphop, brap;
+    private ImageIcon album,play;
+    private JLabel title, song, portada;
+    private JButton bespanol,bingles,bcoreano, bpop, brock, balternativo, bpunk, bhiphop, brap, bplay;
+    private JPanel list_songs   ;
+    JScrollPane scroll;
     
     PantallaPrincipal(){
         
@@ -38,9 +41,11 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         hiphopH = new ImageIcon("HiphopH.png");
         rapH = new ImageIcon("RapH.png");
         
-        Font fuenteTextmini = new Font("Outfit", 0, 16);
+        album = new ImageIcon("Disco.png");
+        play = new ImageIcon("Play.png");
+        
+        Font fuenteTextmini = new Font("Outfit", 0, 24);
         Font fuenteTitle = new Font("Outfit", 0, 38);
-        Font fuente38 = new Font("Outfit", 0, 38);
 
 
         setLayout(null);
@@ -244,6 +249,37 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
                 brap.setIcon(new ImageIcon(rap.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
 
             }        });
+        
+        //PANEL DE CANCIONES
+        list_songs = new JPanel();
+        
+        scroll = new JScrollPane(list_songs);
+        scroll.setBounds(505, 125, 450, 250);
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        this.add(scroll);
+        
+        portada = new JLabel();
+        portada.setIcon(album);
+        portada.setBackground(null);
+        portada.setBorder(null);
+        portada.setBounds(157, 125, 150, 150);
+        add(portada);
+        
+        song = new JLabel("Nombre canción");
+        song.setForeground(Color.white);
+        song.setBounds(144, 288, 200, 20);
+        song.setFont(fuenteTextmini);
+        this.add(song);
+        
+        bplay = new JButton();
+        bplay.setIcon(play);
+        bplay.setBackground(null);
+        bplay.setBorder(null);
+        bplay.setContentAreaFilled(false);;
+        bplay.setFocusPainted(false);
+        bplay.setBounds(201, 336, 60, 60);
+        bplay.addActionListener(this);
+        add(bplay);
         
     }
 

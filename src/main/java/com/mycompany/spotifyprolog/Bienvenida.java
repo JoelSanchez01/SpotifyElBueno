@@ -97,7 +97,8 @@ public class Bienvenida extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == continuar){
-            System.out.println("Vamos!");
+            PantallaPrincipal.Ejecutar();
+            dispose();
         }
     }
 }

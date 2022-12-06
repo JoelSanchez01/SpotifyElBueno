@@ -6,6 +6,7 @@
 package com.mycompany.spotifyprolog;
 
 import java.io.IOException;
+import org.jpl7.Query;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.io.IOException;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-      PantallaPrincipal.Ejecutar();
+       Bienvenida.Ejecutar();
     }
 }
 
