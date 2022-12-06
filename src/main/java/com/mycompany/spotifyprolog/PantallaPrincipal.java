@@ -4,23 +4,53 @@
  */
 package com.mycompany.spotifyprolog;
 
+import org.jpl7.Query;
+import org.jpl7.Term;
+
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
 import java.util.Objects;
 
 public class PantallaPrincipal  extends JFrame implements ActionListener {
-    
+
+    JTable tabla;
     private ImageIcon espanol, ingles, coreano, pop, rock, alternativo, punk, hiphop, rap, espanolH, inglesH, coreanoH, popH, rockH, alternativoH, punkH, hiphopH, rapH;
-    private ImageIcon album,play;
+    private ImageIcon album,play, stop;
     private JLabel title, song, portada;
-    private JButton bespanol,bingles,bcoreano, bpop, brock, balternativo, bpunk, bhiphop, brap, bplay;
+    private JToggleButton bespanol,bingles,bcoreano, bpop, brock, balternativo, bpunk, bhiphop, brap, bplay;
+
     private JPanel list_songs   ;
     JScrollPane scroll;
+    ButtonGroup idioma;
+    ButtonGroup genero;
+    String generoS, idiomaS;
     
     PantallaPrincipal(){
-        
+         String [] encabezadosColumnas={"Primer Nombre", "Apellido", "Sexo", "Edad"} ;
+
+        String [] [] datosUsuarios={
+
+                {"Adriana", "Parada", "F", "21"},
+
+        {"Juan", "Calamaro", "M", "40"},
+
+        {"Rosalía", "Bernard", "F", "67"},
+
+        {"Juliana", "Pérez", "F", "36"},
+
+        {"Israel", "González", "M", "36"}
+
+                };
+        tabla=new JTable(datosUsuarios, encabezadosColumnas) ;
+        tabla.setEnabled(false);
+        idioma = new ButtonGroup();
+        genero = new ButtonGroup();
+
+
+
         espanol = new ImageIcon("./Espanol.png");
         ingles = new ImageIcon("Ingles.png");
         coreano = new ImageIcon("Coreano.png");
@@ -43,7 +73,9 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         
         album = new ImageIcon("Disco.png");
         play = new ImageIcon("Play.png");
-        
+        stop = new ImageIcon("Stop.png");
+
+
         Font fuenteTextmini = new Font("Outfit", 0, 24);
         Font fuenteTitle = new Font("Outfit", 0, 38);
 
@@ -59,7 +91,7 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         this.add(title);
  
         //BOTONES IDIOMAS
-        bespanol = new JButton();
+        bespanol = new JToggleButton();
         bespanol.setIcon(espanol);
         bespanol.setBackground(null);
         bespanol.setBorder(null);
@@ -67,20 +99,17 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         bespanol.setFocusPainted(false);
         bespanol.setBounds(127, 455, 210, 45);
         bespanol.addActionListener(this);
+        idioma.add(bespanol);
         add(bespanol);
         
         bespanol.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bespanol.setIcon(new ImageIcon(espanolH.getImage().getScaledInstance(210,45,Image.SCALE_SMOOTH)));
                 bespanol.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bespanol.setIcon(new ImageIcon(espanol.getImage().getScaledInstance(210,45,Image.SCALE_SMOOTH)));
-
-            }        });
+       });
         
-        bingles = new JButton();
+        bingles = new JToggleButton();
         bingles.setIcon(ingles);
         bingles.setBackground(null);
         bingles.setBorder(null);
@@ -88,20 +117,17 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         bingles.setFocusPainted(false);
         bingles.setBounds(435, 455, 210, 45);
         bingles.addActionListener(this);
+        idioma.add(bingles);
         add(bingles);
         
         bingles.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bingles.setIcon(new ImageIcon(inglesH.getImage().getScaledInstance(210,45,Image.SCALE_SMOOTH)));
                 bingles.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bingles.setIcon(new ImageIcon(ingles.getImage().getScaledInstance(210,45,Image.SCALE_SMOOTH)));
+       });
 
-            }        });
-        
-        bcoreano = new JButton();
+        bcoreano = new JToggleButton();
         bcoreano.setIcon(coreano);
         bcoreano.setBackground(null);
         bcoreano.setBorder(null);
@@ -109,43 +135,38 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         bcoreano.setFocusPainted(false);
         bcoreano.setBounds(743, 455, 210, 45);
         bcoreano.addActionListener(this);
+        idioma.add(bcoreano);
+
         add(bcoreano);
         
         bcoreano.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bcoreano.setIcon(new ImageIcon(coreanoH.getImage().getScaledInstance(210,45,Image.SCALE_SMOOTH)));
                 bcoreano.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bcoreano.setIcon(new ImageIcon(coreano.getImage().getScaledInstance(210,45,Image.SCALE_SMOOTH)));
-
-            }        });
+      });
         
         //BOTONES DE GENEROS
         
-        bpop = new JButton();
+        bpop = new JToggleButton();
         bpop.setIcon(pop);
         bpop.setBackground(null);
         bpop.setBorder(null);
         bpop.setContentAreaFilled(false);;
-        bpop.setFocusPainted(false);
+        //  bpop.setFocusPainted(false);
         bpop.setBounds(265, 520, 120, 60);
         bpop.addActionListener(this);
+        genero.add(bpop);
         add(bpop);
         
         bpop.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bpop.setIcon(new ImageIcon(popH.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
                 bpop.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bpop.setIcon(new ImageIcon(pop.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
-
-            }        });
+      });
         
-        bhiphop = new JButton();
+        bhiphop = new JToggleButton();
         bhiphop.setIcon(hiphop);
         bhiphop.setBackground(null);
         bhiphop.setBorder(null);
@@ -153,20 +174,16 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         bhiphop.setFocusPainted(false);
         bhiphop.setBounds(455, 520, 170, 60);
         bhiphop.addActionListener(this);
+        genero.add(bhiphop);
         add(bhiphop);
         
         bhiphop.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bhiphop.setIcon(new ImageIcon(hiphopH.getImage().getScaledInstance(170,60,Image.SCALE_SMOOTH)));
                 bhiphop.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
+        });
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bhiphop.setIcon(new ImageIcon(hiphop.getImage().getScaledInstance(170,60,Image.SCALE_SMOOTH)));
-
-            }        });
-        
-        brock = new JButton();
+        brock = new JToggleButton();
         brock.setIcon(rock);
         brock.setBackground(null);
         brock.setBorder(null);
@@ -174,20 +191,17 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         brock.setFocusPainted(false);
         brock.setBounds(695, 520, 120, 60);
         brock.addActionListener(this);
+        genero.add(brock);
         add(brock);
         
         brock.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                brock.setIcon(new ImageIcon(rockH.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
                 brock.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                brock.setIcon(new ImageIcon(rock.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
-
-            }        });
+       });
         
-        bpunk = new JButton();
+        bpunk = new JToggleButton();
         bpunk.setIcon(punk);
         bpunk.setBackground(null);
         bpunk.setBorder(null);
@@ -195,20 +209,17 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         bpunk.setFocusPainted(false);
         bpunk.setBounds(205, 600, 120, 60);
         bpunk.addActionListener(this);
+        genero.add(bpunk);
         add(bpunk);
         
         bpunk.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                bpunk.setIcon(new ImageIcon(punkH.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
                 bpunk.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                bpunk.setIcon(new ImageIcon(punk.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
-
-            }        });
+      });
         
-        balternativo = new JButton();
+        balternativo = new JToggleButton();
         balternativo.setIcon(alternativo);
         balternativo.setBackground(null);
         balternativo.setBorder(null);
@@ -216,20 +227,17 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         balternativo.setFocusPainted(false);
         balternativo.setBounds(440, 600, 200, 60);
         balternativo.addActionListener(this);
+        genero.add(balternativo);
         add(balternativo);
         
         balternativo.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                balternativo.setIcon(new ImageIcon(alternativoH.getImage().getScaledInstance(200,60,Image.SCALE_SMOOTH)));
                 balternativo.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                balternativo.setIcon(new ImageIcon(alternativo.getImage().getScaledInstance(200,60,Image.SCALE_SMOOTH)));
-
-            }        });
+         });
         
-        brap = new JButton();
+        brap = new JToggleButton();
         brap.setIcon(rap);
         brap.setBackground(null);
         brap.setBorder(null);
@@ -237,18 +245,15 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         brap.setFocusPainted(false);
         brap.setBounds(746, 600, 120, 60);
         brap.addActionListener(this);
+        genero.add(brap);
         add(brap);
         
         brap.addMouseListener(new java.awt.event.MouseAdapter(){
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                brap.setIcon(new ImageIcon(rapH.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
                 brap.setCursor(new Cursor(Cursor.HAND_CURSOR));
             }
 
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                brap.setIcon(new ImageIcon(rap.getImage().getScaledInstance(120,60,Image.SCALE_SMOOTH)));
-
-            }        });
+     });
         
         //PANEL DE CANCIONES
         list_songs = new JPanel();
@@ -256,7 +261,9 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         scroll = new JScrollPane(list_songs);
         scroll.setBounds(505, 125, 450, 250);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        this.add(scroll);
+        this.add(scroll, BorderLayout.CENTER);
+        list_songs.add(tabla);
+//        list_songs.setLayout(CENTER_ALIGNMENT);
         
         portada = new JLabel();
         portada.setIcon(album);
@@ -271,7 +278,7 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         song.setFont(fuenteTextmini);
         this.add(song);
         
-        bplay = new JButton();
+        bplay = new JToggleButton();
         bplay.setIcon(play);
         bplay.setBackground(null);
         bplay.setBorder(null);
@@ -295,6 +302,106 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(bpop.isSelected()) {
+            generoS = "pop";
+            bpop.setIcon(popH);
+        }
+        else  bpop.setIcon(pop);
+
+        if(brap.isSelected()) {
+            generoS = "rap";
+            brap.setIcon(rapH);
+        }
+        else  brap.setIcon(rap);
+
+        if(bhiphop.isSelected()) {
+            generoS = "hiphop";
+            bhiphop.setIcon(hiphopH);
+        }
+        else  bhiphop.setIcon(hiphop);
+
+        if(brock.isSelected()) {
+            generoS = "rock";
+            brock.setIcon(rockH);
+        }
+        else  brock.setIcon(rock);
+
+        if(balternativo.isSelected()) {
+            generoS = "alternativo";
+            balternativo.setIcon(alternativoH);
+        }
+        else  balternativo.setIcon(alternativo);
+
+        if(bpunk.isSelected()) {
+            generoS = "punk";
+            bpunk.setIcon(punkH);
+        }
+        else  bpunk.setIcon(punk);
+
+        if(bespanol.isSelected()) {
+            idiomaS = "espanol";
+            bespanol.setIcon(espanolH);
+        }
+        else  bespanol.setIcon(espanol);
+
+        if(bingles.isSelected()) {
+            idiomaS = "ingles";
+            bingles.setIcon(inglesH);
+        }
+        else  bingles.setIcon(ingles);
+
+        if(bcoreano.isSelected()) {
+            idiomaS = "coreano";
+            bcoreano.setIcon(coreanoH);
+        }
+        else  bcoreano.setIcon(coreano);
+
+        if(bplay.isSelected()) {
+            bplay.setIcon(stop);
+        }
+        else  bplay.setIcon(play);
+
+        if(bcoreano.isSelected() || bespanol.isSelected() || bingles.isSelected())
+            if(bpop.isSelected() || bhiphop.isSelected() || brock.isSelected() || bpunk.isSelected() || balternativo.isSelected() || brap.isSelected()){
+                PROLOG(generoS, idiomaS);
+            }
+
 
     }
+
+
+
+
+    //para obtener el puro valor del mapa
+//            for(Term value: obtenido.values()){
+//                        System.out.println(String.valueOf(value));
+//                        }
+
+    public static void PROLOG(String g, String id){
+
+        //ARCHIVO A CONSULTAR
+        String conexion = "consult('spot.pl')";
+        Query con = new Query(conexion);
+        //HACE LA CONEXION
+        System.out.println(conexion + "" + (con.hasMoreSolutions() ? "ACEPTADO" : "FALLADO"));
+        System.out.println("Iniciando la prueba");
+        //SE HACE LA CONSULTA
+        String consul = "obtenertodo(X,"+id+",Y,Z,"+g+")";
+        Query ejecutar = new Query(consul);
+
+        //SI HAY RESPUESTA
+        if (ejecutar.hasSolution()) {
+            //SE GUARDA EN UN ARREGLO DE MAPAS
+            Map<String, Term>[] listOfMaps = ejecutar.allSolutions();
+            //SE ITERAN HASTA OBNTENER LOS PUROS MAPAS
+            for (Map<String, Term> obtenido : listOfMaps) {
+                System.out.println(obtenido);
+            }
+
+        }
+
+    }
+
+
+
 }
