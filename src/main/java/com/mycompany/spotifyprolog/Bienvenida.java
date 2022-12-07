@@ -5,6 +5,7 @@
 package com.mycompany.spotifyprolog;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.LineUnavailableException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -97,7 +98,11 @@ public class Bienvenida extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == continuar){
-            PantallaPrincipal.Ejecutar();
+            try {
+                PantallaPrincipal.Ejecutar();
+            } catch (LineUnavailableException ex) {
+                throw new RuntimeException(ex);
+            }
             dispose();
         }
     }

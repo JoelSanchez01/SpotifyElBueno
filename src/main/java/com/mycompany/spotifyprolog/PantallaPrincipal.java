@@ -8,11 +8,14 @@ import org.jpl7.Query;
 import org.jpl7.Term;
 
 import java.awt.*;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
@@ -31,11 +34,14 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
     JLabel nombreF, artistaF, albumF;
     JButton reproducir;
 
+    private ImageIcon carmesi, noche, giallo, harryhouse, harryharry,golive, iamyou, lyst, clemiroh;
+    Clip clip;
     //TABLA
 
-    PantallaPrincipal() {
+    PantallaPrincipal() throws LineUnavailableException {
         Font fuenteTextmini = new Font("Outfit", 0, 24);
         Font fuenteTitle = new Font("Outfit", 0, 38);
+        clip = AudioSystem.getClip();
 
         idioma = new ButtonGroup();
         genero = new ButtonGroup();
@@ -85,6 +91,16 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         play = new ImageIcon("Play.png");
         stop = new ImageIcon("Stop.png");
 
+
+        carmesi = new ImageIcon("carmesi.jpg");
+        noche = new ImageIcon("noche.jpg");
+        giallo = new ImageIcon("giallo.jpg");
+        harryhouse = new ImageIcon("harrysH.jpg");
+        harryharry = new ImageIcon("harryHS.jpg");
+        golive = new ImageIcon("golive.jpeg");
+        iamyou = new ImageIcon("iamyou.jpg");
+        lyst = new ImageIcon("lyst.jpeg");
+        clemiroh = new ImageIcon("clemiroh.jpeg");
 
 
 
@@ -295,11 +311,12 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         bplay.setFocusPainted(false);
         bplay.setBounds(910, 190, 60, 60);
         bplay.addActionListener(this);
+        bplay.setEnabled(false);
         add(bplay);
 
     }
 
-    public static void Ejecutar() {
+    public static void Ejecutar() throws LineUnavailableException {
         PantallaPrincipal clase = new PantallaPrincipal();
         clase.setSize(1080, 720);
         clase.setLocationRelativeTo(null);
@@ -357,29 +374,96 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
             bcoreano.setIcon(coreanoH);
         } else bcoreano.setIcon(coreano);
 
-        if (bplay.isSelected()) {
-            bplay.setIcon(stop);
-        } else bplay.setIcon(play);
-
-        if (bcoreano.isSelected() || bespanol.isSelected() || bingles.isSelected())
-            if (bpop.isSelected() || bhiphop.isSelected() || brock.isSelected() || bpunk.isSelected() || balternativo.isSelected() || brap.isSelected()) {
-                consultarLista(generoS, idiomaS);
+        if (bplay.isSelected()) {try {
+            String cancionR = nombreF.getText();
+            System.out.println(cancionR);
+            String cancionD = "";
+            switch (cancionR) {
+                case "Entre comillas":
+                    cancionD = "entrecomillas.wav";
+                    break;
+                case "Documentales":
+                    cancionD = "documentales.wav";
+                    break;
+                case "Mcmlxxx":
+                    cancionD = "1980.wav";
+                    break;
+                case "As it was":
+                    cancionD = "asitwas.wav";
+                    break;
+                case "Kiwi":
+                    cancionD = "kiwi.wav";
+                    break;
+                case "Little freak":
+                    cancionD = "littlefreak.wav";
+                    break;
+                case "Get cool":
+                    cancionD = "getcool.wav";
+                    break;
+                case "Mic drop":
+                    cancionD = "micdrop.wav";
+                    break;
+                case "Slump":
+                    cancionD = "slump.wav";
+                    break;
+                case "Maze of memories":
+                    cancionD = "mazeofmemories.wav";
+                    break;
+                default:
             }
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(cancionD).getAbsoluteFile());
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+            bespanol.setEnabled(false);
+            bingles.setEnabled(false);
+            bcoreano.setEnabled(false);
+            bpop.setEnabled(false);
+            brock.setEnabled(false);
+            balternativo.setEnabled(false);
+            bpunk.setEnabled(false);
+            bhiphop.setEnabled(false);
+            brap.setEnabled(false);
+
+        } catch(UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            System.out.println("Error al reproducir el sonido.");
+        }
+            bplay.setIcon(stop);
+        } else {
+            bespanol.setEnabled(true);
+            bingles.setEnabled(true);
+            bcoreano.setEnabled(true);
+            bpop.setEnabled(true);
+            brock.setEnabled(true);
+            balternativo.setEnabled(true);
+            bpunk.setEnabled(true);
+            bhiphop.setEnabled(true);
+            brap.setEnabled(true);
+            clip.stop();
+            bplay.setIcon(play);
+        }
+
+        if ((bcoreano.isSelected() || bespanol.isSelected() || bingles.isSelected())&& (bpop.isSelected() || bhiphop.isSelected() || brock.isSelected() || bpunk.isSelected() || balternativo.isSelected() || brap.isSelected()) ){
+            consultarLista(generoS, idiomaS);
+            bplay.setEnabled(true);
+        }
 
 
-    }
+        }
 
 
 
 
-    public ArrayList<Cancion> consultarLista(String g, String id) {
-        ArrayList<Cancion> lista = new ArrayList<>();
+
+
+
+    public void consultarLista(String g, String id) {
         //ARCHIVO A CONSULTAR
         String conexion = "consult('spot.pl')";
         Query con = new Query(conexion);
         //HACE LA CONEXION
         System.out.println(conexion + "" + (con.hasMoreSolutions() ? "ACEPTADO" : "FALLADO"));
-        System.out.println("Iniciando la prueba");
+        //System.out.println("Iniciando la prueba");
         //SE HACE LA CONSULTA
         String consul = "obtenertodo(X," + id + ",Y,Z," + g + ")";
         Query ejecutar = new Query(consul);
@@ -390,19 +474,53 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
             Map<String, Term>[] listOfMaps = ejecutar.allSolutions();
             //SE ITERAN HASTA OBNTENER LOS PUROS MAPAS
             for (Map<String, Term> obtenido : listOfMaps) {
-                System.out.println(obtenido);
+               // System.out.println(obtenido);
                 String nombre =String.valueOf(obtenido.get("X")).replaceAll("_"," ");
                 String artista = String.valueOf(obtenido.get("Y")).replaceAll("_"," ");
                 String album = String.valueOf(obtenido.get("Z")).replaceAll("_"," ");
                 nombreF.setText(nombre.substring(0, 1).toUpperCase() + nombre.substring(1));
                 artistaF.setText(artista.substring(0, 1).toUpperCase() + artista.substring(1));
                 albumF.setText(album.substring(0, 1).toUpperCase() + album.substring(1));
+
+                switch (nombreF.getText()) {
+                    case "Entre comillas":
+                        portada.setIcon(new ImageIcon(carmesi.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        break;
+                    case "Documentales":
+                        portada.setIcon(new ImageIcon(giallo.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        break;
+                    case "Mcmlxxx":
+                        portada.setIcon(new ImageIcon(noche.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        break;
+                    case "As it was":
+                        portada.setIcon(new ImageIcon(harryhouse.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        break;
+                    case "Kiwi":
+                        portada.setIcon(new ImageIcon(harryharry.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        break;
+                    case "Little freak":
+                        portada.setIcon(new ImageIcon(harryhouse.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        break;
+                    case "Get cool":
+                        portada.setIcon(new ImageIcon(iamyou.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        break;
+                    case "Mic drop":
+                        portada.setIcon(new ImageIcon(lyst.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        break;
+                    case "Slump":
+                        portada.setIcon(new ImageIcon(golive.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        break;
+                    case "Maze of memories":
+                        portada.setIcon(new ImageIcon(clemiroh.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        break;
+                    default:
+                }
+
+
             }
 
-            return lista;
 
         }
-        return null;
 
     }
 
