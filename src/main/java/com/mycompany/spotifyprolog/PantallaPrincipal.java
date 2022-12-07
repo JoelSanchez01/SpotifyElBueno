@@ -294,7 +294,7 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
         portada.setIcon(album);
         portada.setBackground(null);
         portada.setBorder(null);
-        portada.setBounds(157, 150, 150, 150);
+        portada.setBounds(50, 150, 200, 200);
         add(portada);
 
 //        song = new JLabel("Nombre canción");
@@ -484,34 +484,34 @@ public class PantallaPrincipal  extends JFrame implements ActionListener {
 
                 switch (nombreF.getText()) {
                     case "Entre comillas":
-                        portada.setIcon(new ImageIcon(carmesi.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        portada.setIcon(new ImageIcon(carmesi.getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH)));
                         break;
                     case "Documentales":
-                        portada.setIcon(new ImageIcon(giallo.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        portada.setIcon(new ImageIcon(giallo.getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH)));
                         break;
                     case "Mcmlxxx":
-                        portada.setIcon(new ImageIcon(noche.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        portada.setIcon(new ImageIcon(noche.getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH)));
                         break;
                     case "As it was":
-                        portada.setIcon(new ImageIcon(harryhouse.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        portada.setIcon(new ImageIcon(harryhouse.getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH)));
                         break;
                     case "Kiwi":
-                        portada.setIcon(new ImageIcon(harryharry.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        portada.setIcon(new ImageIcon(harryharry.getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH)));
                         break;
                     case "Little freak":
-                        portada.setIcon(new ImageIcon(harryhouse.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        portada.setIcon(new ImageIcon(harryhouse.getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH)));
                         break;
                     case "Get cool":
-                        portada.setIcon(new ImageIcon(iamyou.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        portada.setIcon(new ImageIcon(iamyou.getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH)));
                         break;
                     case "Mic drop":
-                        portada.setIcon(new ImageIcon(lyst.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        portada.setIcon(new ImageIcon(lyst.getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH)));
                         break;
                     case "Slump":
-                        portada.setIcon(new ImageIcon(golive.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        portada.setIcon(new ImageIcon(golive.getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH)));
                         break;
                     case "Maze of memories":
-                        portada.setIcon(new ImageIcon(clemiroh.getImage().getScaledInstance(150,150,Image.SCALE_SMOOTH)));
+                        portada.setIcon(new ImageIcon(clemiroh.getImage().getScaledInstance(200,200,Image.SCALE_SMOOTH)));
                         break;
                     default:
                 }
