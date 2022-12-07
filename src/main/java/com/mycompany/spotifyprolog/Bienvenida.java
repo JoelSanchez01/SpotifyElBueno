@@ -45,7 +45,7 @@ public class Bienvenida extends JFrame implements ActionListener {
         add(bienvenido);
 
         logo = new JLabel();
-        logoImg = new ImageIcon(Objects.requireNonNull(getClass().getResource("./imagotipo.png")));
+        logoImg = new ImageIcon("./imagotipo.png");
         logo.setIcon(new ImageIcon(logoImg.getImage().getScaledInstance(780,233,Image.SCALE_SMOOTH)));
         logo.setBounds(150, 220, 780, 233);
         add(logo);
@@ -56,8 +56,8 @@ public class Bienvenida extends JFrame implements ActionListener {
         selecciona.setFont(fuente38);
         add(selecciona);
 
-        boton = new ImageIcon(Objects.requireNonNull(getClass().getResource("./Vamos.png")));
-        botonH = new ImageIcon(Objects.requireNonNull(getClass().getResource("./VamosH.png")));
+        boton = new ImageIcon("Vamos.png");
+        botonH = new ImageIcon("VamosH.png");
 
         continuar = new JButton();
         continuar.setIcon(new ImageIcon(boton.getImage().getScaledInstance(300,75,Image.SCALE_SMOOTH)));

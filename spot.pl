@@ -115,7 +115,6 @@ pertenece_genero(mic_drop,hiphop).
 pertenece_genero(get_cool,pop).
 pertenece_genero(maze_of_memories,rap).
 pertenece_genero(slump,rock).
-pertenece_genero(gods_menu,hiphop).
 
 %ligar canciones a artistas
 pertenece_artista(dynamite,bts).
